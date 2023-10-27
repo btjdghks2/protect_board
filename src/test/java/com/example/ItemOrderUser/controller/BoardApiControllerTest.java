@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BoardApiControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mvc;
 
     @MockBean
     private BoardService boardService;
@@ -37,7 +38,10 @@ class BoardApiControllerTest {
         Board board = new Board("제목1","내용");
 
         //비교값 넣기
-        mockMvc.perform("/")
+        mvc.perform(MockMvcRequestBuilders.get("/")
+
+                .accept(status().isOk())
+        )
 
 
 
@@ -45,6 +49,10 @@ class BoardApiControllerTest {
 
     @Test
     void createBoard() {
+
+        // 먼저 해야 할 것은 메소드 기능대로 값을 넣는것
+        // 두번째로는 넣은 값을 조회 하는것
+        // 세번째로는 그 값이 지금 입력하는 값과 동일하다는 것
     }
 
     @Test
