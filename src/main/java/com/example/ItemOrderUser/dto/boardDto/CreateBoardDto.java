@@ -3,8 +3,10 @@ package com.example.ItemOrderUser.dto.boardDto;
 import com.example.ItemOrderUser.domain.Board;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
+@Setter
 public class CreateBoardDto {
 
 

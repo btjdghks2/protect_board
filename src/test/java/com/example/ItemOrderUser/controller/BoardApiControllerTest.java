@@ -90,13 +90,27 @@ class BoardApiControllerTest {
         assertThat(all.get(0).getContent()).isEqualTo(content);
 
 
-
+// 여기서 값을 넣어놓고 비교 하는 방식으로 다시 가보자
 
 
     }
 
     @Test
     void detailBoard() {
+
+        // Given
+        Board board = new Board();
+        board.setTilte("제목1");
+        board.setContent("내용1");
+        boardRepository.save(board);
+
+        // When
+        Board foundboard = boardRepository.findById(board.getId()).get();
+
+        // Then
+        assertThat(foundboard.getTitle()).isEqualTo("제목1");
+        assertThat(foundboard.getContent()).isEqualTo("내용1");
+
     }
 
     @Test
