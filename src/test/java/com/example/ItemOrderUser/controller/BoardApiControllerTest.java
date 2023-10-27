@@ -1,28 +1,50 @@
 package com.example.ItemOrderUser.controller;
 
 import com.example.ItemOrderUser.domain.Board;
+import com.example.ItemOrderUser.dto.boardDto.CreateBoardDto;
+import com.example.ItemOrderUser.dto.boardDto.FindAllBoardDto;
+import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
 @ExtendWith({SpringExtension.class})
+@Transactional
 class BoardApiControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    @LocalServerPort
+    @Value("${local.server.port}")
+    private int port;
 
-    @MockBean
+    @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Autowired
+    private BoardRepository boardRepository;
+
 
 
     @Test
@@ -37,11 +59,6 @@ class BoardApiControllerTest {
         //given
         Board board = new Board("제목1","내용");
 
-        //비교값 넣기
-        mvc.perform(MockMvcRequestBuilders.get("/")
-
-                .accept(status().isOk())
-        )
 
 
 
@@ -53,6 +70,29 @@ class BoardApiControllerTest {
         // 먼저 해야 할 것은 메소드 기능대로 값을 넣는것
         // 두번째로는 넣은 값을 조회 하는것
         // 세번째로는 그 값이 지금 입력하는 값과 동일하다는 것
+
+        String title = "title";
+        String content = "content";
+
+        CreateBoardDto requestDto = null;
+        requestDto.setTitle(title);
+        requestDto.setContent(content);
+
+        String url = "http://localhost:" + port + "/api/new";
+
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url,requestDto,Long.class);
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isGreaterThan(0L);
+
+        List<Board> all = boardRepository.findAll();
+        assertThat(all.get(0).getTitle()).isEqualTo(title);
+        assertThat(all.get(0).getContent()).isEqualTo(content);
+
+
+
+
+
     }
 
     @Test

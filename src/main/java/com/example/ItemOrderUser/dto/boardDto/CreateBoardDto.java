@@ -11,11 +11,13 @@ public class CreateBoardDto {
     private String title;
     private String content;
 
+
     public CreateBoardDto(Board board){
 
         this.title = board.getTitle();
         this.content = board.getContent();
     }
+
 
     @Builder
     public Board toEntity() {
