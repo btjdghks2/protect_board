@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -37,12 +38,9 @@ public class BoardService {
     @Transactional
     public List<FindAllBoardDto> boardFindAllService() {
 
-        List<Board> board = boardRepository.findAll();
-
-        List<FindAllBoardDto> result = board.stream()
-                .map(b -> new FindAllBoardDto())
-                .collect(toList());
-        return result;
+        return boardRepository.findAllDesc().stream()
+                .map(FindAllBoardDto::new)
+                .collect(Collectors.toList());
     }
 
 
@@ -53,5 +51,12 @@ public class BoardService {
         boardRepository.delete(board);
 
         return new DeleteBoardDto(board);
+    }
+
+    @Transactional
+    public FindByBoardDto boardFindByIdService(Long id) {
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글이 존재하지 않습니다"));
+
+        return new FindByBoardDto(board);
     }
 }
