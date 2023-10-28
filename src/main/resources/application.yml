@@ -19,3 +19,7 @@ spring:
     properties: # property 사용 설정
       hibernate: # hibernate property 설정
         format_sql: true
+server:
+  servlet:
+    encoding:
+      force-response: true

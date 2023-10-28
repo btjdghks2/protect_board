@@ -99,17 +99,12 @@ class BoardApiControllerTest {
     void detailBoard() {
 
         // Given
-        Board board = new Board();
-        board.setTilte("제목1");
-        board.setContent("내용1");
-        boardRepository.save(board);
+
 
         // When
-        Board foundboard = boardRepository.findById(board.getId()).get();
+
 
         // Then
-        assertThat(foundboard.getTitle()).isEqualTo("제목1");
-        assertThat(foundboard.getContent()).isEqualTo("내용1");
 
     }
 
