@@ -2,6 +2,7 @@ package com.example.ItemOrderUser.controller;
 
 import com.example.ItemOrderUser.dto.boardDto.FindByBoardDto;
 import com.example.ItemOrderUser.service.BoardService;
+import com.example.ItemOrderUser.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     @GetMapping("/")
     public String mainPage(Model model){
@@ -29,6 +31,7 @@ public class BoardController {
     @GetMapping("/detail/{id}")
     public String detailPage(Model model, @PathVariable Long id) {
         model.addAttribute("board", boardService.boardFindByIdService(id));
+        model.addAttribute("comment",commentService.commentFindAllService(id));
 
         return "detailPage";
     }

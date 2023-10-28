@@ -31,6 +31,16 @@ public class CommentService {
         return result;
     }
 
+    @Transactional
+    public List<FindAllCommentDto> commentFindAllService(Long id) {
+        List<Comment> comment = commentRepository.findByBoardId(id);
+
+        List<FindAllCommentDto> result = comment.stream()
+                .map(b -> new FindAllCommentDto())
+                .collect(toList());
+        return result;
+    }
+
 
     @Transactional
     public CommentDeleteDto commentDeleteService(Long id) {
