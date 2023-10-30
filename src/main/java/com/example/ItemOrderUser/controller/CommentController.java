@@ -28,7 +28,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/api/detail/comment/{id}")
-    public List<FindAllCommentDto> findallcomment(@PathVariable Long id) {
+    public List<FindAllCommentDto> readComment(@PathVariable Long id) {
 
         List<FindAllCommentDto> result = commentService.commentSaveService(id);
 

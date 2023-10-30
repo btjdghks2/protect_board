@@ -12,6 +12,9 @@ var main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+        $('#btn-comment-save').on('click', function () {
+            _this.comment_save();
+        });
     },
     save : function () {
         var data = {
@@ -53,6 +56,25 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+        comment_save : function () {
+            var data = {
+                commentcontent: $('#commentcontent').val()
+
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/detail/new',
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function() {
+                alert('댓글이 등록되었습니다.');
+                window.location.href = '/detail/' + id;
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        },
     delete : function () {
         var id = $('#id').val();
 
