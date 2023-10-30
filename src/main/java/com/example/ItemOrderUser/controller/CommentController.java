@@ -1,14 +1,13 @@
 package com.example.ItemOrderUser.controller;
 
 import com.example.ItemOrderUser.domain.Comment;
-import com.example.ItemOrderUser.dto.commentDto.CommentCreateDto;
+import com.example.ItemOrderUser.dto.commentDto.CommentRequestCreateDto;
 import com.example.ItemOrderUser.dto.commentDto.CommentDeleteDto;
+import com.example.ItemOrderUser.dto.commentDto.CommentResponseCreateDto;
 import com.example.ItemOrderUser.dto.commentDto.FindAllCommentDto;
 import com.example.ItemOrderUser.repository.CommentRepository;
 import com.example.ItemOrderUser.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,18 +26,19 @@ public class CommentController {
     private final CommentRepository commentRepository;
     private final CommentService commentService;
 
-    @GetMapping("/api/detail/comment/{id}")
-    public List<FindAllCommentDto> readComment(@PathVariable Long id) {
-
-        List<FindAllCommentDto> result = commentService.commentSaveService(id);
-
-        return result;
-    }
+//    @GetMapping("/api/detail/comment/{id}")
+//    public List<FindAllCommentDto> readComment(@PathVariable Long id) {
+//
+//        List<FindAllCommentDto> result = commentService.commentSaveService(id);
+//
+//
+//        return result;
+//    }
 
     @PostMapping("/api/detail/new")
-    public Long createcomment(@RequestBody CommentCreateDto commentCreateDto) {
+    public Long createcomment(@RequestBody CommentRequestCreateDto commentRequestCreateDto) {
 
-        Comment comment = commentCreateDto.toEntity();
+        Comment comment = commentRequestCreateDto.toEntity();
 
         commentRepository.save(comment);
 

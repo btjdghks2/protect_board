@@ -1,31 +1,24 @@
 package com.example.ItemOrderUser.controller;
 
 import com.example.ItemOrderUser.domain.Board;
-import com.example.ItemOrderUser.dto.boardDto.CreateBoardDto;
-import com.example.ItemOrderUser.dto.boardDto.FindAllBoardDto;
+import com.example.ItemOrderUser.dto.boardDto.CreateBoardRequestDto;
 import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith({SpringExtension.class})
 @Transactional
@@ -74,7 +67,7 @@ class BoardApiControllerTest {
         String title = "title";
         String content = "content";
 
-        CreateBoardDto requestDto = null;
+        CreateBoardRequestDto requestDto = null;
         requestDto.setTitle(title);
         requestDto.setContent(content);
 

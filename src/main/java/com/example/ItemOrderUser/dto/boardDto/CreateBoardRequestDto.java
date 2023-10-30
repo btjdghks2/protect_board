@@ -9,7 +9,7 @@ import lombok.Setter;
 @Data
 @Setter
 @NoArgsConstructor
-public class CreateBoardDto {
+public class CreateBoardRequestDto {
 
 
     private String title;
@@ -18,7 +18,7 @@ public class CreateBoardDto {
 
 
 
-    public CreateBoardDto(String title, String content) {
+    public CreateBoardRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
     }

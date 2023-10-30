@@ -1,10 +1,9 @@
 package com.example.ItemOrderUser.dto.commentDto;
 
-import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.domain.Comment;
 import lombok.Builder;
 
-public class CommentCreateDto {
+public class CommentRequestCreateDto {
     private String commentcontent;
 
     @Builder

@@ -1,6 +1,6 @@
 package com.example.ItemOrderUser.controller;
 
-import com.example.ItemOrderUser.dto.boardDto.FindByBoardDto;
+import com.example.ItemOrderUser.dto.boardDto.FindByBoardRequestDto;
 import com.example.ItemOrderUser.service.BoardService;
 import com.example.ItemOrderUser.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class BoardController {
 
     @GetMapping("/detail/edit/{id}")
     public String editPage(Model model, @PathVariable Long id) {
-        FindByBoardDto dto = boardService.boardFindByIdService(id);
+        FindByBoardRequestDto dto = boardService.boardFindByIdService(id);
         model.addAttribute("board", dto);
         return "editPage";
     }

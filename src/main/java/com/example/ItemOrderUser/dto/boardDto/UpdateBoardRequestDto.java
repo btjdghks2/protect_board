@@ -1,20 +1,24 @@
 package com.example.ItemOrderUser.dto.boardDto;
 
 import com.example.ItemOrderUser.domain.Board;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class FindAllBoardDto {
+public class UpdateBoardRequestDto {
 
     private Long id;
     private String title;
     private String content;
 
-    @Builder
-    public FindAllBoardDto(Board board) {
-        this.id = board.getId();
-        this.title = board.getTitle();
+    public UpdateBoardRequestDto(String title, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
     }
 
+    public UpdateBoardRequestDto(Board board) {
+        this.id = board.getId();
+        this.title = board.getTitle();
+        this.content = board.getContent();
+    }
 }

@@ -70,7 +70,7 @@ var main = {
                 data: JSON.stringify(data)
             }).done(function() {
                 alert('댓글이 등록되었습니다.');
-                window.location.href = '/detail/' + id;
+                window.location.href = '/';
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });

@@ -1,18 +1,16 @@
 package com.example.ItemOrderUser.service;
 
+import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.domain.Comment;
-import com.example.ItemOrderUser.dto.boardDto.FindAllBoardDto;
-import com.example.ItemOrderUser.dto.commentDto.CommentCreateDto;
 import com.example.ItemOrderUser.dto.commentDto.CommentDeleteDto;
 import com.example.ItemOrderUser.dto.commentDto.FindAllCommentDto;
+import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -20,10 +18,13 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class CommentService {
 
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+    private final BoardRepository boardRepository;
 
     @Transactional
     public List<FindAllCommentDto> commentSaveService(Long id) {
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
+
         List<Comment> comment = commentRepository.findByBoardId(id);
 
         List<FindAllCommentDto> result = comment.stream()
