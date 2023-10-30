@@ -25,7 +25,7 @@ public class CommentService {
     public List<FindAllCommentDto> commentSaveService(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
 
-        List<Comment> comment = commentRepository.findByBoardId(id);
+        List<Comment> comment = commentRepository.findAllByBoardId(board.getId());
 
         List<FindAllCommentDto> result = comment.stream()
                 .map(b -> new FindAllCommentDto())
@@ -35,8 +35,13 @@ public class CommentService {
 
     @Transactional
     public List<FindAllCommentDto> commentFindAllService(Long id) {
-        List<Comment> comment = commentRepository.findByBoardId(id);
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
 
+        List<Comment> comment = commentRepository.findAllByBoardId(board.getId());
+
+        if (comment.isEmpty()) {
+            return null;
+        }
         List<FindAllCommentDto> result = comment.stream()
                 .map(b -> new FindAllCommentDto())
                 .collect(toList());
