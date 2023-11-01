@@ -37,6 +37,7 @@ var main = {
     },
         comment_save : function () {
             var data = {
+                id: $('#id').val(),
                 commentcontent: $('#commentcontent').val()
 
             };

@@ -39,10 +39,6 @@ public class CommentService {
 
         List<Comment> comment = commentRepository.findAllByBoardId(board.getId());
 
-        if (comment.isEmpty()) {
-            return null;
-        }
-
         List<FindAllCommentDto> result = comment.stream()
                 .map(b -> new FindAllCommentDto())
                 .collect(toList());
