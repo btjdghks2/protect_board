@@ -42,9 +42,11 @@ public class CommentService {
         if (comment.isEmpty()) {
             return null;
         }
+
         List<FindAllCommentDto> result = comment.stream()
                 .map(b -> new FindAllCommentDto())
                 .collect(toList());
+
         return result;
     }
 
