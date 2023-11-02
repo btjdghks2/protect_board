@@ -18,8 +18,9 @@ public class FindAllCommentDto {
 
 
     public FindAllCommentDto(Comment comment) {
-        this.id = comment.getId();
-        this.commentcontent = comment.getCommentcontent();
+        comment.getId();
+        comment.getBoard().getId();
+        comment.getCommentcontent();
 
     }
 }

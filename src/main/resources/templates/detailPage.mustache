@@ -12,25 +12,22 @@
 {{/board}}
 <a href="/" class="btn btn-danger">back</a>
 <div>
-<table class="table table-horizontal table-bordered">
-    <thead class="thead-strong">
-    <tr>
-        <th>유저넘버</th>
-        <th>제목</th>
-
-    </tr>
-    </thead>
-    <div>
-    <tbody id="tbody">
+    <div><p>테스트입니다, 어떤 위치에 오는지 확인할께요</p></div>
     {{#comment}}
-        <tr>
-            <td>아이디 자리{{id}}</td>
-            <td><p>컨텐트 자리{{commentcontent}}</p></td>
-        </tr>
-    {{/comment}}
-    </tbody>
+    <div class="card m-2">
+        <div class="card-header">
+            <h1>{{id}}</h1>
+            <hr>
+        </div>
+        <div class="card-body">
+            <h3>{{commentcontent}}</h3>
+        </div>
     </div>
-</table>
+        {{/comment}}
+</div>
+
+<div>
+
     <div class="form-group">
         <label for="content"> 내용 </label>
         <textarea class="form-control" id="commentcontent" placeholder="내용을 입력하세요"></textarea>

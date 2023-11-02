@@ -3,6 +3,7 @@ package com.example.ItemOrderUser.service;
 import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.domain.Comment;
 import com.example.ItemOrderUser.dto.commentDto.CommentDeleteDto;
+import com.example.ItemOrderUser.dto.commentDto.CommentRequestCreateDto;
 import com.example.ItemOrderUser.dto.commentDto.FindAllCommentDto;
 import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.repository.CommentRepository;
@@ -22,15 +23,10 @@ public class CommentService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public List<FindAllCommentDto> commentSaveService(Long id) {
+    public CommentRequestCreateDto commentSaveService(Long id, CommentRequestCreateDto commentRequestCreateDto) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
 
-        List<Comment> comment = commentRepository.findAllByBoardId(board.getId());
-
-        List<FindAllCommentDto> result = comment.stream()
-                .map(b -> new FindAllCommentDto())
-                .collect(toList());
-        return result;
+        Comment comment = Comment.createComment(commentRequestCreateDto, board);
     }
 
     @Transactional
@@ -42,7 +38,8 @@ public class CommentService {
         List<FindAllCommentDto> result = comment.stream()
                 .map(b -> new FindAllCommentDto())
                 .collect(toList());
-
+//가설1 목록을 불러오지 못한다
+        //가설2 html 구문이 잘못된 거다
         return result;
     }
 
