@@ -35,10 +35,10 @@ public class CommentController {
 //        return result;
 //    }
 
-    @PostMapping("/api/detail/{id}/new")
-    public Long createcomment(@PathVariable Long id,@RequestBody CommentRequestCreateDto commentRequestCreateDto) {
+    @PostMapping("/api/detail/{boardId}/new")
+    public Long createcomment(@PathVariable Long boardId,@RequestBody CommentRequestCreateDto commentRequestCreateDto) {
 
-        commentRequestCreateDto = commentService.commentSaveService(id, commentRequestCreateDto);
+        commentRequestCreateDto = commentService.commentSaveService(boardId, commentRequestCreateDto);
 
         Comment comment = commentRequestCreateDto.toEntity();
 

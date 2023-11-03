@@ -1,25 +1,29 @@
 package com.example.ItemOrderUser.dto.commentDto;
 
-import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.domain.Comment;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 @Data
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class CommentRequestCreateDto {
 
     private Long id;
     private String commentcontent;
-    private Board board;
+    @JsonProperty("board_id")
+    private Long boardId;
 
 
 
-    public CommentRequestCreateDto(String commentcontent) {
-        this.commentcontent = commentcontent;
+    public static CommentRequestCreateDto createComment(Comment comment) {
+        return new CommentRequestCreateDto(
+                comment.getId(),
+                comment.getCommentcontent(),
+                comment.getBoard().getId());
+
+
     }
 
     @Builder

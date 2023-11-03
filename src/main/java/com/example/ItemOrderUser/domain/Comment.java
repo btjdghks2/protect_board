@@ -44,4 +44,7 @@ public class Comment {
                 dto.getNickname(),
                 dto.getBody());
     }
+
+    public static Comment createComment(Comment create) {
+    }
 }

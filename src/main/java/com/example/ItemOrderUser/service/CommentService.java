@@ -23,10 +23,12 @@ public class CommentService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public CommentRequestCreateDto commentSaveService(Long id, CommentRequestCreateDto commentRequestCreateDto) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
+    public CommentRequestCreateDto commentSaveService(Long boardId, CommentRequestCreateDto commentRequestCreateDto) {
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
 
-        Comment comment = Comment.createComment(commentRequestCreateDto, board);
+        Comment comments = Comment.createComment(commentRequestCreateDto, board);
+        Comment create = commentRepository.save(comments);
+        return CommentRequestCreateDto.createComment(Comment.createComment(create));
     }
 
     @Transactional
