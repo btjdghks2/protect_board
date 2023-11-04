@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,17 +34,19 @@ public class CommentService {
     }
 
     @Transactional
-    public List<FindAllCommentDto> commentFindAllService(Long id) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
+    public List<FindAllCommentDto> commentFindAllService(Long boardId) {
 
-        List<Comment> comment = commentRepository.findAllByBoardId(board.getId());
+        List<Comment> comments = commentRepository.findAllByBoardId(boardId);
 
-        List<FindAllCommentDto> result = comment.stream()
-                .map(b -> new FindAllCommentDto())
-                .collect(toList());
-//가설1 목록을 불러오지 못한다
-        //가설2 html 구문이 잘못된 거다
-        return result;
+        List<FindAllCommentDto> findAllCommentDtos = new ArrayList<FindAllCommentDto>();
+        for (int i = 0; i < comments.size(); i++) {
+            Comment c = comments.get(i);
+            FindAllCommentDto dto = FindAllCommentDto.createCommentDto(c);
+            findAllCommentDtos.add(dto);}
+        return commentRepository.findByBoardId(boardId)
+                .stream()
+                .map(comment -> FindAllCommentDto.createCommentDto(comment))
+                .collect(Collectors.toList());
     }
 
 

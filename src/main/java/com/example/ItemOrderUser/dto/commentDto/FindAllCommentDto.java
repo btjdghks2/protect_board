@@ -14,13 +14,15 @@ import lombok.Setter;
 public class FindAllCommentDto {
 
     private Long id;
+    private Long boardId;
     private String commentcontent;
 
 
-    public FindAllCommentDto(Comment comment) {
-        comment.getId();
-        comment.getBoard().getId();
-        comment.getCommentcontent();
-
+    public static FindAllCommentDto createCommentDto(Comment comment) {
+        return new FindAllCommentDto(
+                comment.getId(),
+                comment.getBoard().getId(),
+                comment.getCommentcontent()
+        );
     }
 }
