@@ -25,28 +25,31 @@ public class CommentService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public CommentRequestCreateDto commentSaveService(Long boardId, CommentRequestCreateDto commentRequestCreateDto) {
-        Board board = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다"));
+    public CommentRequestCreateDto commentSaveService(Long boardId,CommentRequestCreateDto commentRequestCreateDto) {
+        Comment comment = new Comment();
+        comment.setId(commentRequestCreateDto.getId());
+        comment.setCommentcontent(commentRequestCreateDto.getCommentcontent());
 
-        Comment comments = Comment.createComment(commentRequestCreateDto, board);
-        Comment create = commentRepository.save(comments);
-        return CommentRequestCreateDto.createComment(Comment.createComment(create));
+
+        // 그러니까 문제점은 댓글 저장을 하는데
     }
 
     @Transactional
     public List<FindAllCommentDto> commentFindAllService(Long boardId) {
 
-        List<Comment> comments = commentRepository.findAllByBoardId(boardId);
+        List<Comment> comments = commentRepository.findByBoardId(boardId);
 
-        List<FindAllCommentDto> findAllCommentDtos = new ArrayList<FindAllCommentDto>();
-        for (int i = 0; i < comments.size(); i++) {
-            Comment c = comments.get(i);
-            FindAllCommentDto dto = FindAllCommentDto.createCommentDto(c);
-            findAllCommentDtos.add(dto);}
-        return commentRepository.findByBoardId(boardId)
+        List<FindAllCommentDto> result = commentRepository.findByBoardId(boardId)
                 .stream()
                 .map(comment -> FindAllCommentDto.createCommentDto(comment))
                 .collect(Collectors.toList());
+
+
+        return result;
+
+
+
+
     }
 
 

@@ -31,11 +31,11 @@ public class BoardController {
         return "createPage";
     }
 
-    @GetMapping("/detail/{id}")
-    public String detailPage(Model model, @PathVariable Long id) {
+    @GetMapping("/detail/{boardId}")
+    public String detailPage(Model model, @PathVariable Long boardId) {
 
-        List<FindAllCommentDto> findAllCommentDto = commentService.commentFindAllService(id);
-        model.addAttribute("board", boardService.boardFindByIdService(id));
+        List<FindAllCommentDto> findAllCommentDto = commentService.commentFindAllService(boardId);
+        model.addAttribute("board", boardService.boardFindByIdService(boardId));
         model.addAttribute("comment", findAllCommentDto);
 
         return "detailPage";

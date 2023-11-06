@@ -52,15 +52,19 @@ public class BoardApiController {
 
     //글 상세 페이지
     //여기서 댓글 불러오기 + 댓글작성
-//    @GetMapping("/api/detail/{id}")
-//    public FindByBoardRequestDto detailBoard(@PathVariable Long id) {
-//
-//        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글이 존재하지 않습니다"));
-//
-//        List<FindAllCommentDto> comments = commentService.commentFindAllService(id);
-//        return new FindByBoardRequestDto(board);
-//
-//    }
+    @GetMapping("/api/detail/{id}")
+    public FindByBoardRequestDto detailBoard(@PathVariable Long id) {
+
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글이 존재하지 않습니다"));
+
+        List<FindAllCommentDto> comments = commentService.commentFindAllService(id);
+
+        
+
+
+        return new FindByBoardRequestDto(board);
+
+    }
     // 글 삭제
     @DeleteMapping("/api/detail/delete/{id}")
     public DeleteBoardRequestDto deleteBoard(@PathVariable Long id) {
