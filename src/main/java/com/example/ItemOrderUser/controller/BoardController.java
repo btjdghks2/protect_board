@@ -17,7 +17,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
-    private final CommentService commentService;
+
 
     @GetMapping("/")
     public String mainPage(Model model){
@@ -34,16 +34,15 @@ public class BoardController {
     @GetMapping("/detail/{boardId}")
     public String detailPage(Model model, @PathVariable Long boardId) {
 
-        List<FindAllCommentDto> findAllCommentDto = commentService.commentFindAllService(boardId);
         model.addAttribute("board", boardService.boardFindByIdService(boardId));
-        model.addAttribute("comment", findAllCommentDto);
+
 
         return "detailPage";
     }
 
-    @GetMapping("/detail/edit/{id}")
-    public String editPage(Model model, @PathVariable Long id) {
-        FindByBoardRequestDto dto = boardService.boardFindByIdService(id);
+    @GetMapping("/detail/edit/{boardId}")
+    public String editPage(Model model, @PathVariable Long boardId) {
+        FindByBoardRequestDto dto = boardService.boardFindByIdService(boardId);
         model.addAttribute("board", dto);
         return "editPage";
     }

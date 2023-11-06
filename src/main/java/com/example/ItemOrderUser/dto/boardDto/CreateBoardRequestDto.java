@@ -16,8 +16,6 @@ public class CreateBoardRequestDto {
     private String content;
 
 
-
-
     public CreateBoardRequestDto(String title, String content) {
         this.title = title;
         this.content = content;

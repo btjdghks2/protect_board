@@ -13,7 +13,7 @@ public class CommentResponseCreateDto {
 
     private String commentcontent;
 
-    public CommentResponseCreateDto(Comment  comment) {
+    public CommentResponseCreateDto(Comment comment) {
         this.commentcontent = comment.getCommentcontent();
     }
 }

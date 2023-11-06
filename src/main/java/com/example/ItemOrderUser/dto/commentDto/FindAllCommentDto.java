@@ -13,16 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FindAllCommentDto {
 
-    private Long id;
+    private Long commentId;
     private Long boardId;
     private String commentcontent;
 
 
-    public static FindAllCommentDto createCommentDto(Comment comment) {
-        return new FindAllCommentDto(
-                comment.getId(),
-                comment.getBoard().getId(),
-                comment.getCommentcontent()
-        );
+
     }
-}
+

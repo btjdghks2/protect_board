@@ -19,9 +19,9 @@ public class CommentRequestCreateDto {
 
     public static CommentRequestCreateDto createComment(Comment comment) {
         return new CommentRequestCreateDto(
-                comment.getId(),
+                comment.getCommentId(),
                 comment.getCommentcontent(),
-                comment.getBoard().getId());
+                comment.getBoard().getBoardId());
 
 
     }

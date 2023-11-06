@@ -19,7 +19,7 @@ public class BoardApiController {
 
     private final BoardRepository boardRepository;
     private final BoardService boardService;
-    private final CommentService commentService;
+
 
 
     //만들건, 글/쓰기, 글 /목록,글 상/세보기,글 수정하기,글 삭제
@@ -43,7 +43,7 @@ public class BoardApiController {
 
         board = boardRepository.save(board);
 
-        return board.getId();
+        return board.getBoardId();
     }
 
 
@@ -56,10 +56,6 @@ public class BoardApiController {
     public FindByBoardRequestDto detailBoard(@PathVariable Long id) {
 
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글이 존재하지 않습니다"));
-
-        List<FindAllCommentDto> comments = commentService.commentFindAllService(id);
-
-        
 
 
         return new FindByBoardRequestDto(board);

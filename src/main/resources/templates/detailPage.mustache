@@ -7,8 +7,8 @@
     <h3>{{content}}</h3>
 </div>
 
-<a href="/detail/edit/{{id}}"  class="btn btn-primary">Edit</a>
-<a href="/detail/delete/{{id}}"  class="btn btn-danger">Delete</a>
+<a href="/detail/edit/{{boardId}}"  class="btn btn-primary">Edit</a>
+<a href="/detail/delete/{{boardId}}"  class="btn btn-danger">Delete</a>
 {{/board}}
 <a href="/" class="btn btn-danger">back</a>
 <div>
@@ -16,7 +16,7 @@
     {{#comment}}
     <div class="card m-2">
         <div class="card-header">
-            <h1>{{id}}</h1>
+            <h1>{{boardId}}</h1>
             <hr>
         </div>
         <div class="card-body">

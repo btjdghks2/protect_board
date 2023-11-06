@@ -6,18 +6,18 @@ import lombok.Getter;
 @Getter
 public class UpdateBoardRequestDto {
 
-    private Long id;
+    private Long boardId;
     private String title;
     private String content;
 
     public UpdateBoardRequestDto(String title, String content) {
-        this.id = id;
+        this.boardId = boardId;
         this.title = title;
         this.content = content;
     }
 
     public UpdateBoardRequestDto(Board board) {
-        this.id = board.getId();
+        this.boardId = board.getBoardId();
         this.title = board.getTitle();
         this.content = board.getContent();
     }

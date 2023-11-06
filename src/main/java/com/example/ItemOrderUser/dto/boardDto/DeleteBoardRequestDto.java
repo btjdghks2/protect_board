@@ -4,14 +4,14 @@ import com.example.ItemOrderUser.domain.Board;
 
 public class DeleteBoardRequestDto {
 
-    private Long id;
+    private Long boardId;
     private String title;
     private String content;
 
 
     public DeleteBoardRequestDto(Board board) {
 
-        this.id = board.getId();
+        this.boardId = board.getBoardId();
         this.title = board.getTitle();
         this.content = board.getContent();
     }

@@ -3,11 +3,11 @@ package com.example.ItemOrderUser.dto.commentDto;
 import com.example.ItemOrderUser.domain.Comment;
 
 public class CommentDeleteDto {
-    private Long id;
+    private Long commentId;
     private String commentContent;
     public CommentDeleteDto(Comment comment) {
 
-        this.id = comment.getId();
+        this.commentId = comment.getCommentId();
         this.commentContent = comment.getCommentcontent();
     }
 }

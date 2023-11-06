@@ -7,13 +7,13 @@ import lombok.Getter;
 @Getter
 public class FindAllBoardRequesetDto {
 
-    private Long id;
+    private Long boardId;
     private String title;
     private String content;
 
     @Builder
     public FindAllBoardRequesetDto(Board board) {
-        this.id = board.getId();
+        this.boardId = board.getBoardId();
         this.title = board.getTitle();
     }
 

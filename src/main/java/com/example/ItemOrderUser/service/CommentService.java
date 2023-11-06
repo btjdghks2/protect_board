@@ -24,42 +24,5 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final BoardRepository boardRepository;
 
-    @Transactional
-    public CommentRequestCreateDto commentSaveService(Long boardId,CommentRequestCreateDto commentRequestCreateDto) {
-        Comment comment = new Comment();
-        comment.setId(commentRequestCreateDto.getId());
-        comment.setCommentcontent(commentRequestCreateDto.getCommentcontent());
 
-
-        // 그러니까 문제점은 댓글 저장을 하는데
-    }
-
-    @Transactional
-    public List<FindAllCommentDto> commentFindAllService(Long boardId) {
-
-        List<Comment> comments = commentRepository.findByBoardId(boardId);
-
-        List<FindAllCommentDto> result = commentRepository.findByBoardId(boardId)
-                .stream()
-                .map(comment -> FindAllCommentDto.createCommentDto(comment))
-                .collect(Collectors.toList());
-
-
-        return result;
-
-
-
-
-    }
-
-
-    @Transactional
-    public CommentDeleteDto commentDeleteService(Long id) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다"));
-
-        commentRepository.delete(comment);
-
-
-        return new CommentDeleteDto(comment);
-    }
 }

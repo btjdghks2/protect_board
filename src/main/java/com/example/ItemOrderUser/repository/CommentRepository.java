@@ -12,11 +12,6 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment,Long> {
 
 
-     List<Comment> findAllByBoardId(Long id);
-
-
-     @Query(value = "SELECT * FROM comment WHERE comment.board_id = :boardId",nativeQuery = true)
-     List<Comment> findByBoardId(@Param("boardId")Long boardId);
 
 
 }
