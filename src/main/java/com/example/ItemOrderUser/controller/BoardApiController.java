@@ -2,11 +2,8 @@ package com.example.ItemOrderUser.controller;
 
 import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.dto.boardDto.*;
-import com.example.ItemOrderUser.dto.commentDto.CommentResponseCreateDto;
-import com.example.ItemOrderUser.dto.commentDto.FindAllCommentDto;
 import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.service.BoardService;
-import com.example.ItemOrderUser.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

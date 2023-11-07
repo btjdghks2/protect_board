@@ -1,7 +1,6 @@
 package com.example.ItemOrderUser.dto.boardDto;
 
 import com.example.ItemOrderUser.domain.Board;
-import com.example.ItemOrderUser.domain.Comment;
 
 import java.util.List;
 
