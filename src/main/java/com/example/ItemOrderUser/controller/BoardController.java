@@ -28,17 +28,17 @@ public class BoardController {
     }
 
     @GetMapping("/detail/{boardId}")
-    public String detailPage(Model model, @PathVariable Long boardId) {
+    public String detailPage(Model model, @PathVariable Long id) {
 
-        model.addAttribute("board", boardService.boardFindByIdService(boardId));
+        model.addAttribute("board", boardService.boardFindByIdService(id));
 
 
         return "detailPage";
     }
 
-    @GetMapping("/detail/edit/{boardId}")
-    public String editPage(Model model, @PathVariable Long boardId) {
-        FindByBoardRequestDto dto = boardService.boardFindByIdService(boardId);
+    @GetMapping("/detail/edit/{id}")
+    public String editPage(Model model, @PathVariable Long id) {
+        FindByBoardRequestDto dto = boardService.boardFindByIdService(id);
         model.addAttribute("board", dto);
         return "editPage";
     }

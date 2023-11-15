@@ -18,7 +18,7 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberId")
@@ -30,8 +30,8 @@ public class Board {
     @Column
     private String content;
 
-//    @OneToMany(mappedBy = "board")
-//    private List<Comment> comment = new ArrayList<>();
+    @OneToMany(mappedBy = "board")
+    private List<Comment> comment = new ArrayList<>();
 
     @Builder
     public Board(String title, String content) {

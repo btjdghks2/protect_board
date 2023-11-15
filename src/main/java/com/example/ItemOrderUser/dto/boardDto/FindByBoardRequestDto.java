@@ -6,14 +6,14 @@ import java.util.List;
 
 public class FindByBoardRequestDto {
 
-    private Long boardId;
+    private Long id;
     private String title;
     private String content;
 
 
 
-    public FindByBoardRequestDto(Long boardId, String title, String content) {
-        this.boardId = boardId;
+    public FindByBoardRequestDto(Long id, String title, String content) {
+        this.id = id;
         this.title = title;
         this.content = content;
 
@@ -21,7 +21,7 @@ public class FindByBoardRequestDto {
 
     public FindByBoardRequestDto(Board board) {
 
-        this.boardId = board.getBoardId();
+        this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
     }
