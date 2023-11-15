@@ -40,7 +40,7 @@ public class BoardApiController {
 
         board = boardRepository.save(board);
 
-        return board.getBoardId();
+        return board.getId();
     }
 
 

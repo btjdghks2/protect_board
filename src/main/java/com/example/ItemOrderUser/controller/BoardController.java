@@ -27,7 +27,7 @@ public class BoardController {
         return "createPage";
     }
 
-    @GetMapping("/detail/{boardId}")
+    @GetMapping("/detail/{id}")
     public String detailPage(Model model, @PathVariable Long id) {
 
         model.addAttribute("board", boardService.boardFindByIdService(id));
