@@ -26,7 +26,4 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Board> board = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Comment> comment = new ArrayList<>();
-
 }

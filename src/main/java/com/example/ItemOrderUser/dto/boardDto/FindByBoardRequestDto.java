@@ -10,13 +10,13 @@ public class FindByBoardRequestDto {
     private String title;
     private String content;
 
-    private List<Comment> comments;
 
-    public FindByBoardRequestDto(Long boardId, String title, String content, List<Comment> comments) {
+
+    public FindByBoardRequestDto(Long boardId, String title, String content) {
         this.boardId = boardId;
         this.title = title;
         this.content = content;
-        this.comments = comments;
+
     }
 
     public FindByBoardRequestDto(Board board) {
