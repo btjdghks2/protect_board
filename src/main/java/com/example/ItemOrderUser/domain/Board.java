@@ -43,4 +43,9 @@ public class Board {
         this.title = title;
         this.content = content;
     }
+
+    // 디테일 뷰
+    public void detailBoardComment() {
+        Board.id =
+    }
 }
