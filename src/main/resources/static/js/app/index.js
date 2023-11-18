@@ -35,26 +35,7 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
-        comment_save : function () {
-            var data = {
-                id: $('#id').val(),
-                commentcontent: $('#commentcontent').val()
 
-            };
-
-            $.ajax({
-                type: 'POST',
-                url: '/api/detail/new',
-                dataType: 'json',
-                contentType:'application/json; charset=utf-8',
-                data: JSON.stringify(data)
-            }).done(function() {
-                alert('댓글이 등록되었습니다.');
-                window.location.href = '/';
-            }).fail(function (error) {
-                alert(JSON.stringify(error));
-            });
-        },
     update : function () {
         var data = {
             title: $('#title').val(),
@@ -87,6 +68,26 @@ var main = {
             contentType:'application/json; charset=utf-8'
         }).done(function() {
             alert('글이 삭제되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+    comment_save : function () {
+        var data = {
+            boardId: $('#boardId').val(),
+            commentcontent: $('#commentcontent').val()
+
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/detail/'+ data.boardId +'/comments',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('댓글이 등록되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));

@@ -1,25 +1,15 @@
-package com.example.ItemOrderUser.dto.boardDto;
+package com.example.ItemOrderUser.dto;
 
 import com.example.ItemOrderUser.domain.Board;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
-@Setter
-@NoArgsConstructor
-public class CreateBoardRequestDto {
-
+public class CreateBoardDto {
 
     private String title;
     private String content;
 
-
-    public CreateBoardRequestDto(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
     @Builder
     public Board toEntity() {
@@ -28,6 +18,5 @@ public class CreateBoardRequestDto {
                 .content(content)
                 .build();
     }
-
 
 }
