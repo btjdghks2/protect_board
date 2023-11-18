@@ -1,18 +1,15 @@
 package com.example.ItemOrderUser.domain;
 
 import com.example.ItemOrderUser.domain.time.BaseTime;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
+import lombok.*;
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comment extends BaseTime {
 
     @Id
@@ -21,14 +18,6 @@ public class Comment extends BaseTime {
 
     @Column
     private String commentcontent;
-
-    @Column
-    @CreatedDate
-    private String createdDate;
-
-    @Column
-    @LastModifiedDate
-    private String modifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;

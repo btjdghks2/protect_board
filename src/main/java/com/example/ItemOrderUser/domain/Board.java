@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,13 +32,7 @@ public class Board extends BaseTime {
     @Column
     private String content;
 
-    @Column
-    @CreatedDate
-    private String createdDate;
 
-    @Column
-    @LastModifiedDate
-    private String modifiedDate;
 
     @OneToMany(mappedBy = "board")
     private List<Comment> comment = new ArrayList<>();

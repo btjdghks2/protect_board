@@ -12,12 +12,12 @@ public class FindAllBoardList {
 
     private String content;
 
-    private String createdDate;
+
 
     public FindAllBoardList(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.createdDate = board.getCreatedDate();
+
     }
 }

@@ -23,8 +23,6 @@ public class CommentRequestDto {
         Comment comment = Comment.builder()
                 .id(id)
                 .commentcontent(commentcontent)
-                .createdDate(createdDate)
-                .modifiedDate(modifiedDate)
                 .board(board)
                 .build();
         return comment;

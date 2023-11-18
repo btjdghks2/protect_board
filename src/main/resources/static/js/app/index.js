@@ -83,12 +83,12 @@ var main = {
         $.ajax({
             type: 'POST',
             url: '/api/detail/'+ data.boardId +'/comments',
-            dataType: 'json',
+            dataType: 'text',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
             alert('댓글이 등록되었습니다.');
-            window.location.href = '/';
+            window.location.href = '/detail/' + data.boardId;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
