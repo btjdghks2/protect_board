@@ -20,7 +20,7 @@ public class Comment extends BaseTime {
     private String commentcontent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;

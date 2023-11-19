@@ -23,8 +23,8 @@ public class Board extends BaseTime {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberId")
-    private Member member;
+    @JoinColumn(name = "userId")
+    private User user;
 
     @Column
     private String title;
