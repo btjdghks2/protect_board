@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "users")
 public class User {
 
 
@@ -39,7 +40,7 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Board> board = new ArrayList<>();
 
 }

@@ -23,3 +23,7 @@ server:
   servlet:
     encoding:
       force-response: true
+
+  spring:
+    mustache:
+      expose-request-attributes: true

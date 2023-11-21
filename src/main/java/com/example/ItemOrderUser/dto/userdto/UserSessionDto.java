@@ -2,9 +2,11 @@ package com.example.ItemOrderUser.dto.userdto;
 
 import com.example.ItemOrderUser.domain.Role;
 import com.example.ItemOrderUser.domain.User;
+import lombok.Getter;
 
 import java.io.Serializable;
 
+@Getter
 public class UserSessionDto implements Serializable {
     private String username;
     private String password;

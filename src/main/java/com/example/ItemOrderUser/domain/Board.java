@@ -34,7 +34,7 @@ public class Board extends BaseTime {
 
 
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
     private List<Comment> comment = new ArrayList<>();
 
 
