@@ -1,5 +1,6 @@
 package com.example.ItemOrderUser.controller;
 
+import com.example.ItemOrderUser.config.LoginUser;
 import com.example.ItemOrderUser.dto.CommentResponseDto;
 import com.example.ItemOrderUser.dto.FindByBoardRequestDto;
 import com.example.ItemOrderUser.service.BoardService;
