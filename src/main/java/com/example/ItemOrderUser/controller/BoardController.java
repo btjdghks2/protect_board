@@ -3,6 +3,7 @@ package com.example.ItemOrderUser.controller;
 import com.example.ItemOrderUser.config.LoginUser;
 import com.example.ItemOrderUser.dto.CommentResponseDto;
 import com.example.ItemOrderUser.dto.FindByBoardRequestDto;
+import com.example.ItemOrderUser.dto.userdto.UserSessionDto;
 import com.example.ItemOrderUser.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,12 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model, @LoginUser UserSessionDto user) {
         model.addAttribute("board",boardService.mainList());
+
+        if(user != null) {
+            model.addAttribute("user", user.getNickname());
+        }
         return "main";
     }
 
