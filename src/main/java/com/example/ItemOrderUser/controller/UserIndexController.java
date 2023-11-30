@@ -4,11 +4,16 @@ import com.example.ItemOrderUser.dto.userdto.UserDto;
 import com.example.ItemOrderUser.dto.userdto.UserRequestDto;
 import com.example.ItemOrderUser.dto.userdto.UserSessionDto;
 import com.example.ItemOrderUser.service.UserService;
+import com.example.ItemOrderUser.validator.CheckEmailValidator;
+import com.example.ItemOrderUser.validator.CheckNicknameValidator;
+import com.example.ItemOrderUser.validator.CheckUsernameVaildator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -23,6 +28,17 @@ public class UserIndexController {
 
     private final UserService userService;
     private final HttpSession session;
+    private final CheckUsernameVaildator checkUsernameVaildator;
+    private final CheckNicknameValidator checkNicknameValidator;
+    private final CheckEmailValidator checkEmailValidator;
+
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder) {
+        binder.addValidators(checkUsernameVaildator);
+        binder.addValidators(checkNicknameValidator);
+        binder.addValidators(checkEmailValidator);
+    }
+
 
     @GetMapping("/auth/join")
     public String join(Model model) {
@@ -49,7 +65,9 @@ public class UserIndexController {
             // 회원가입 페이지로 다시 리턴
             return "join";
         }
-        userService.userJoin(userDto);
+
+        userService.join(userDto);
+
         return "redirect:/login";
 
     }

@@ -1,6 +1,5 @@
 package com.example.ItemOrderUser.service;
 
-import com.example.ItemOrderUser.dto.userdto.UserDto;
 import com.example.ItemOrderUser.dto.userdto.UserRequestDto;
 import com.example.ItemOrderUser.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +22,7 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional
-    public Long join(UserDto dto) {
+    public Long join(@Valid UserRequestDto dto) {
         dto.setPassword(encoder.encode(dto.getPassword()));
 
         return userRepository.save(dto.toEntity()).getId();
@@ -39,9 +39,8 @@ public class UserService {
         return validatorResult;
     }
 
-    public void checkUsernameDuplication(UserRequestDto dto) {
-        boolean usernameDuplicate = userRepository.existsByUsername(dto.toEntity().getUsername());
-    }
+
+
 
 
 }
