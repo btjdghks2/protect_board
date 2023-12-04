@@ -1,5 +1,6 @@
 package com.example.ItemOrderUser.domain;
 
+import com.example.ItemOrderUser.domain.time.BaseTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +14,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "users")
-public class User {
+public class User extends BaseTime {
 
 
     @Id
@@ -24,7 +24,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false,length = 30,unique = true)
-    private String username;
+    private String name;
 
     @Column
     private String nickname;
@@ -42,5 +42,23 @@ public class User {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Board> board = new ArrayList<>();
+
+    @Builder
+    public User(String name, String email, Role role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
+
+
+    public User updateModifiedDate() {
+        this.onPreUpdate();
+        return this;
+    }
+
 
 }

@@ -4,8 +4,8 @@
         <form action="/auth/joinProc" method="post">
             <div class="form-group">
                 <label>아이디</label>
-                <input type="text" name="username" value="{{#userDto}}{{userDto.username}}{{/userDto}}"class="form-control" placeholder="아이디를 입력해주세요">
-                {{#valid_username}} <span id="valid">{{valid_username}}</span> {{/valid_username}}
+                <input type="text" name="name" value="{{#userDto}}{{userDto.name}}{{/userDto}}"class="form-control" placeholder="아이디를 입력해주세요">
+                {{#valid_name}} <span id="valid">{{valid_name}}</span> {{/valid_name}}
 
             </div>
 
