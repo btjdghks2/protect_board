@@ -15,11 +15,14 @@ public class FindAllBestList {
 
     private int view;
 
+    private String createdAt;
+
     public FindAllBestList(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.view = board.getView();
+        this.createdAt = String.valueOf(board.getCreatedAt());
 
     }
 }
