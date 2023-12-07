@@ -22,17 +22,14 @@ public class Board extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private User user;
-
     @Column
     private String title;
 
     @Column
     private String content;
 
-
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int view;
 
     @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
     private List<Comment> comment = new ArrayList<>();

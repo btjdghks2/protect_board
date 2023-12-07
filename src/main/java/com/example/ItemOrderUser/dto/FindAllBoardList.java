@@ -12,12 +12,15 @@ public class FindAllBoardList {
 
     private String content;
 
+    private int view;
+
 
 
     public FindAllBoardList(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
+        this.view = board.getView();
 
     }
 }
