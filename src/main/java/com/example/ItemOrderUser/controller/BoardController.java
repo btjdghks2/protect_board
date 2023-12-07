@@ -26,7 +26,12 @@ public class BoardController {
         return "main";
     }
 
+    @GetMapping("/best")
+    public String bestHome(Model model) {
+        model.addAttribute("board",boardService.bestList());
 
+        return "bestList";
+    }
 
     @GetMapping("/detail/{id}")
     public String deteailBoard(@PathVariable Long id,Model model) {

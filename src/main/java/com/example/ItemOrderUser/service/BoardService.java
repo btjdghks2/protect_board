@@ -70,5 +70,11 @@ public class BoardService {
     }
 
 
+    @Transactional
+    public List<FindAllBestList> bestList() {
 
+        return boardRepository.findByViewGreaterThan(10).stream()
+                .map(FindAllBestList::new)
+                .collect(Collectors.toList());
+    }
 }

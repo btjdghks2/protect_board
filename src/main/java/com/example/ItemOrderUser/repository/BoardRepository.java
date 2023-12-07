@@ -14,5 +14,7 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     @Query("SELECT b FROM Board b ORDER BY b.id DESC")
     List<Board> findAllDesc();
 
+    @Query(value = "SELECT * FROM BOARD B WHERE B.view >10",nativeQuery = true)
+    List<Board> findByViewGreaterThan(int viewCount);
 
 }
