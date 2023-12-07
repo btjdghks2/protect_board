@@ -77,4 +77,13 @@ public class BoardService {
                 .map(FindAllBestList::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<SearchTitle> search(String keyword) {
+
+        return boardRepository.findByTitleContaining(keyword).stream()
+                .map(SearchTitle::new)
+                .collect(Collectors.toList());
+
+    }
 }

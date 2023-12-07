@@ -17,4 +17,6 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     @Query(value = "SELECT * FROM BOARD B WHERE B.view >10",nativeQuery = true)
     List<Board> findByViewGreaterThan(int viewCount);
 
+    List<Board> findByTitleContaining(String keyword);
+
 }

@@ -1,7 +1,9 @@
 package com.example.ItemOrderUser.controller;
 
+import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.dto.CommentResponseDto;
 import com.example.ItemOrderUser.dto.FindByBoardRequestDto;
+import com.example.ItemOrderUser.dto.SearchTitle;
 import com.example.ItemOrderUser.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -57,5 +59,13 @@ public class BoardController {
         FindByBoardRequestDto dto = boardService.findByBoardDetail(id);
         model.addAttribute("board",dto);
         return "editPage";
+    }
+
+    @GetMapping("/search")
+    public String searchControl(String keyword,Model model) {
+        List<SearchTitle> searchList = boardService.search(keyword);
+        model.addAttribute("searchList",searchList);
+
+        return "searchPage";
     }
 }
