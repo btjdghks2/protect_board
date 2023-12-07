@@ -26,6 +26,8 @@ public class BoardController {
         return "main";
     }
 
+
+
     @GetMapping("/detail/{id}")
     public String deteailBoard(@PathVariable Long id,Model model) {
 

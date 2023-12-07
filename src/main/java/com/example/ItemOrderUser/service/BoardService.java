@@ -2,10 +2,7 @@ package com.example.ItemOrderUser.service;
 
 import com.example.ItemOrderUser.domain.Board;
 import com.example.ItemOrderUser.domain.Comment;
-import com.example.ItemOrderUser.dto.CommentRequestDto;
-import com.example.ItemOrderUser.dto.FindAllBoardList;
-import com.example.ItemOrderUser.dto.FindByBoardRequestDto;
-import com.example.ItemOrderUser.dto.UpdateBoardRequestDto;
+import com.example.ItemOrderUser.dto.*;
 import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;

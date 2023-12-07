@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PreUpdate;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,15 +18,12 @@ import java.time.format.DateTimeFormatter;
 public class BaseTime {
 
     @CreatedDate
-    private LocalDateTime createdAt;
+    private String createdAt= LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
 
     @LastModifiedDate
-    private String modifiedDate;
+    private LocalDateTime modifiedDate;
 
 
-    @PreUpdate
-    public void onPreUpdate(){
-        this.modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
-    }
+
 
 }

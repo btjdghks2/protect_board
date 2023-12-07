@@ -1,10 +1,11 @@
 package com.example.ItemOrderUser.dto;
 
+
 import com.example.ItemOrderUser.domain.Board;
 import lombok.Data;
 
 @Data
-public class FindAllBoardList {
+public class FindAllBestList {
 
     private Long id;
 
@@ -14,16 +15,11 @@ public class FindAllBoardList {
 
     private int view;
 
-    private String createdAt;
-
-
-
-    public FindAllBoardList(Board board) {
+    public FindAllBestList(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.view = board.getView();
-        this.createdAt = String.valueOf(board.getCreatedAt());
 
     }
 }
