@@ -6,6 +6,10 @@ import com.example.ItemOrderUser.dto.FindByBoardRequestDto;
 import com.example.ItemOrderUser.dto.SearchTitle;
 import com.example.ItemOrderUser.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +24,23 @@ public class BoardController {
 
     private final BoardService boardService;
 
+//    @GetMapping("/")
+//    public String home(Model model) {
+//        model.addAttribute("board",boardService.mainList());
+//        return "main";
+//    }
+
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("board",boardService.mainList());
+    public String Pagingcon(Model model, @PageableDefault(size =20,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<Board> list = boardService.Pagingser(pageable);
+
+        model.addAttribute("board",boardService.Pagingser(pageable));
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("hasNext", list.hasNext());
+        model.addAttribute("hasPrev", list.hasPrevious());
+
 
 
         return "main";

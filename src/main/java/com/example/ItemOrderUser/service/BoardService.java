@@ -6,6 +6,8 @@ import com.example.ItemOrderUser.dto.*;
 import com.example.ItemOrderUser.repository.BoardRepository;
 import com.example.ItemOrderUser.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,14 +22,22 @@ public class BoardService {
     private final CommentRepository commentRepository;
 
 
-    @Transactional
-    public List<FindAllBoardList> mainList() {
+//    @Transactional
+//    public List<FindAllBoardList> mainList(Pageable pageable) {
+//
+//        return boardRepository.findAllDesc().stream()
+//                .map(FindAllBoardList::new)
+//                .collect(Collectors.toList());
+//
+//    }
 
-        return boardRepository.findAllDesc().stream()
-                .map(FindAllBoardList::new)
-                .collect(Collectors.toList());
+    @Transactional
+    public Page<Board> Pagingser(Pageable pageable) {
+
+        return boardRepository.findAll(pageable);
 
     }
+
 
     @Transactional
     public FindByBoardRequestDto findByBoardDetail(Long id) {
@@ -86,4 +96,6 @@ public class BoardService {
                 .collect(Collectors.toList());
 
     }
+
+
 }
